@@ -1,4 +1,4 @@
-## Setting up the iOS SDK
+# Setting up the iOS SDK
 
 An example project is [available here](https://github.com/luke-at-invitee/invitee-sample-ios)
 Follow the steps below to setup the invitee sdk in your existing project.
@@ -62,7 +62,7 @@ override func viewDidAppear(_ animated: Bool) {
 ```
 
 
-## Setting up webhooks
+# Setting up webhooks
 
 Webhooks are in place to let you know when a referral has been completed. The webhook will contain information about the referrer, referee & what reward, if any, is owed.
 
