@@ -1,37 +1,62 @@
-## Welcome to GitHub Pages
+## Setting up iOS SDK
 
-You can use the [editor on GitHub](https://github.com/luke-at-invitee/invitee-documentation/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+An example project is [available here](https://todo)
+Follow the steps below to setup the invitee sdk in your existing project.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Podfile
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Install the invitee sdk & its dependencies
 
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+pod 'Invitee', '1.0.0'
+pod 'SnapKit', '5.0.1'
+pod 'Alamofire', '5.4.3'
+pod 'RxSwift', '6.2.0'
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Info.plist
 
-### Jekyll Themes
+Add your api key & allow contacts access.
+If you haven't generated an api key before, you can create from within the web dashboard https://app.invitee.co/account/api-keys
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/luke-at-invitee/invitee-documentation/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```markdown
+<key>NSContactsUsageDescription</key>
+<string>Allow contacts so you can send invites</string>
+<key>Invitee API Key</key>
+<string>YOUR-API-KEY</string>
+```
 
-### Support or Contact
+### Setup a user
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Calling setup user is the first step. You should call this as soon as a user is logged in. This will add a user to a campaign if one is available & fetch information about the campaign, which you can then show in your UI
+
+```markdown
+private let user = User(customerId: "abcd-1234-abcd-1234", firstName: "John", lastName: "Appleseed", phoneNumber: "0412345678")
+
+InviteeClient.shared.setup(for: user) { [weak self] maybeCampaign in
+    guard let weakself = self, let campaign = maybeCampaign else { return }
+    // show the referral information & a CTA to present the campaign overview page
+}
+```
+
+### Present campaign overview page
+
+The campaign overview page shows information to a user about the current referral campaign they are in & allows them to send invites to their friends.
+The information seen on this page reflects what you have setup for that campaign in the web dashboard.
+
+```markdown
+InviteeClient.shared.present(on: self) // where self is a UIViewController
+```
+
+### Present referral notifications
+
+When users signup both the referrer & referee can be notified about who of their friends signed up & what reward they earned.
+Call this on a UIViewController where you want to present these popups.
+
+```markdown
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    InviteeClient.shared.presentNotificationIfNeeded()
+}
+```
