@@ -67,6 +67,7 @@ override func viewDidAppear(_ animated: Bool) {
 Webhooks are in place to let you know when a referral has been completed. The webhook will contain information about the referrer, referee & what reward, if any, is owed.
 
 You can setup a new webhook configuration [here](https://app.invitee.co/account/webhooks)
+
 The webhook request will contain a secret key in the header, which is generated when going through setup in the web dashboard. This is used to ensure that the request is coming from invitee.
 
 You must return a 200 response in your webhook handler.
