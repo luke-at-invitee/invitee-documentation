@@ -1,6 +1,6 @@
-## Setting up iOS SDK
+## Setting up the iOS SDK
 
-An example project is [available here](https://todo)
+An example project is [available here](https://github.com/luke-at-invitee/invitee-sample-ios)
 Follow the steps below to setup the invitee sdk in your existing project.
 
 
