@@ -18,7 +18,7 @@ pod 'RxSwift', '6.2.0'
 ### Info.plist
 
 Add your api key & allow contacts access.
-If you haven't generated an api key before, you can create from within the web dashboard https://app.invitee.co/account/api-keys
+If you haven't generated an api key before, you can create from within the [web dashboard](https://app.invitee.co/account/api-keys)
 
 ```markdown
 <key>NSContactsUsageDescription</key>
