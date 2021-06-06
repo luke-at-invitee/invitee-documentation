@@ -9,10 +9,7 @@ Follow the steps below to setup the invitee sdk in your existing project.
 Install the invitee sdk & its dependencies
 
 ```markdown
-pod 'Invitee', '1.0.0'
-pod 'SnapKit', '5.0.1'
-pod 'Alamofire', '5.4.3'
-pod 'RxSwift', '6.2.0'
+pod 'Invitee'
 ```
 
 ### Info.plist
